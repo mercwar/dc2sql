@@ -103,7 +103,7 @@ C:\Mercwar-AI\
 
 ## Step-by-Step Guide: Creating and Using Your Database
 
-![dc2](images/dc2sql-1.png)
+
 
 This section provides a clear, beginner-friendly walkthrough on how to create your legacy database file, place it in the ecosystem, and query it using the `dc2sql` engine.
 
@@ -203,6 +203,72 @@ When an application queries a database through `dc2jet`, the engine performs the
 1. **Workspace Allocation:** Opens a DAO/Jet workspace session, managing user security levels and system database references.
 2. **Buffer and Page Caching:** Maps database pages into local memory buffers to accelerate index traversal and row lookups.
 3. **Jet SQL Translation:** Translates standard relational requests into Jet-optimized SQL ASTs (Abstract Syntax Trees), resolving table joins, filters, and aggregations before returning the flat row sets to `dc2sql`.
+
+---
+
+Here is a high-impact, standalone section specifically written for your `dc2sql_cli` interface. You can paste this directly into your `README.md` right under the **Execution & Command-Line Reference** section to highlight the power of your command-line engine.
+
+---
+
+## ⚡ `dc2sql_cli` Execution & Automation Engine
+
+The **`dc2sql_cli.exe`** binary is the core execution driver of the suite—a zero-dependency, ultra-lightweight Win32 command-line interface engineered in pure C. Designed for high-throughput database translation, automated drive mounting, and background processing, `dc2sql_cli` enables developers to interface with file-backed SQL databases without spawning external UI dependencies or heavy server daemons.
+
+### Core Architecture Capabilities
+
+* **UAC Auto-Elevation Pipeline:** Built with native Win32 token checks (`IsUserAnAdmin`). If executed without administrative privileges, `dc2sql_cli` requests UAC elevation on-the-fly (`runas`) and re-spawns itself seamlessly to ensure unrestricted hardware and low-level drive access.
+* **Scripted & Headless Automation:** Perfectly suited for integration into Windows Batch (`.bat`), PowerShell (`.ps1`), or scheduled automated tasks (`schtasks`). Execute batch queries, execute schema migrations, or dynamically mount remote network database shares in unattended environments.
+* **Dynamic Configuration Parsing:** Uses a specialized, single-pass memory parser to read raw JSON configuration files (`dc2sql-config.json`) and INI manifests without pulling in bloated third-party dependencies.
+
+---
+
+### Command-Line API Syntax
+
+![dc2](images/dc2sql-1.png)
+
+```cmd
+dc2sql_cli.exe --config <path_to_json> [options]
+
+```
+
+#### Supported Switches & Flags
+
+| Switch / Flag | Description |
+| --- | --- |
+| `--config <path>` | **[Required]** Sets the absolute or relative path to the primary JSON configuration matrix. |
+| `--help`, `-h` | Displays the interactive command-line reference, version info, and usage switches. |
+| `--elevated` | *[Internal]* Programmatically appended when the CLI re-launches under administrative privilege elevation. |
+
+---
+
+### Automation Examples
+
+#### 1. Running a Headless Query Pipeline via Windows Batch
+
+```cmd
+@echo off
+echo Running automated dc2sql workspace connection...
+C:\Mercwar-AI\dc2sql\dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
+if %ERRORLEVEL% EQU 0 (
+    echo [SUCCESS] Database routing pipeline executed cleanly.
+) else (
+    echo [ERROR] Pipeline failure with exit code: %ERRORLEVEL%
+)
+
+```
+
+#### 2. Executing via PowerShell Deployment Script
+
+```powershell
+# Execute dc2sql_cli directly within a PowerShell pipeline
+$cliPath = "C:\Mercwar-AI\dc2sql\dc2sql_cli.exe"
+$configPath = "C:\Mercwar-AI\dc2sql-config.json"
+
+$process = Start-Process -FilePath $cliPath -ArgumentList "--config `"$configPath`"" -Wait -NoNewWindow -PassThru
+Write-Host "dc2sql Execution Complete. Exit Code: $($process.ExitCode)"
+
+```
+
 
 ---
 
