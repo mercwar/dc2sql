@@ -69,7 +69,7 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
 
 ```
 
-🗝️ ## Mercwar AI Software — `dc2sql` & `dc2jet` Suite
+## 🗝️  Mercwar AI Software — `dc2sql` & `dc2jet` Suite
 
 ![dc2](images/dc2sql-4.png)
 
