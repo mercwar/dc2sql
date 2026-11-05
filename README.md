@@ -77,9 +77,10 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
 
 ---
 
-# ✨  Mercwar AI Software — `dc2sql` & `dc2jet` Suite
+## ✨  dc2 AI Software — `dc2sql` & `dc2jet` Suite
 
-An enterprise-grade, administrative-elevated database translation and compilation architecture designed for the **`dc2sql`** database migration framework. This suite automates high-performance database routing and native PE binary compilation for Windows native environments.
+##### An enterprise-grade, administrative-elevated database translation and compilation architecture designed for the **`dc2sql`** database migration framework. 
+##### This suite automates high-performance database routing and native PE binary compilation for Windows native environments.
 
 ---
 
