@@ -12,74 +12,15 @@
 An enterprise-grade, administrative-elevated compilation, packaging, and digital signing pipeline designed for the **`dc2sql`** database migration and translation architecture. This suite automates resource compilation, security catalog generation (`.cdf` / `.cat`), certificate provisioning, and code-signing routines for Windows native binaries.
 
 
-![dc2](images/dc2sql-2.png)
-## Architecture Summary: Bridging File Drives to SQL
-
-The **`dc2sql` and `dc2jet` suite** functions as a high-performance database bridge and SQL router. It eliminates the friction of legacy file-based databases—such as Microsoft Access (`.mdb` / `.accdb`) or Microsoft Jet engine files stored on local disks, network shares, or cloud-synced folders—by translating standard SQL queries directly into native DAO (Data Access Objects) operations.
-
-Instead of rewriting legacy applications to use a heavy client-server database engine, `dc2sql` allows modern software to talk to file-based data stores using standard relational SQL syntax, reading directly from any accessible drive or path.
-
----
-
-## How the Database Connects to a Drive
-
-The connection mechanism relies on direct path resolution and runtime file mapping handled by `dc2jet.dll` and `dc2sql.dll`:
-
-1. **Path Resolution:** The application points to a physical or network file path where your database file resides.
-2. **Engine Initialization (`dc2jet.dll`):** The Microsoft Jet database engine is loaded in-process, attaching securely to the specified file path via DAO/ODBC providers.
-3. **SQL Translation (`dc2sql.dll`):** Incoming SQL queries (SELECT, INSERT, UPDATE, DELETE) are intercepted, optimized, and converted into native Jet/DAO commands executed against the file on disk.
-4. **Result Streaming:** Records are piped back through the router to the calling application as clean standard result sets.
-
----
-
-## Practical Examples
-
-### Example 1: Connecting to a Local Drive Path
-
-If your legacy inventory database (`inventory.accdb`) is stored on a local workspace drive, `dc2sql` mounts the file path directly for querying:
-
-```sql
--- Connecting and querying an Access database on a local drive
-USE [C:\Mercwar-AI\data\inventory.accdb];
-
-SELECT ProductID, ProductName, UnitPrice 
-FROM Products 
-WHERE UnitsInStock < 10;
-
-```
-
-* **How it works:** The engine reads the `.accdb` file directly from the `C:\` drive path, executes the filter natively inside the Jet database engine, and returns low-stock items instantly without needing a running database service (like SQL Server or MySQL).
-
----
-
-### Example 2: Connecting to a Network Shared Drive (`UNC Path`)
-
-For enterprise environments where legacy databases live on centralized network attached storage (NAS) or file servers, `dc2sql` resolves Universal Naming Convention (UNC) paths seamlessly:
-
-```sql
--- Connecting to a centralized network share
-USE [\\CorpFileServer01\Finance\LegacyLedger.mdb];
-
-SELECT Department, SUM(Amount) AS TotalSpent 
-FROM Expenses 
-GROUP BY Department;
-
-```
-
-* **How it works:** Multiple client applications can route queries through `dc2sql_cli.exe` or `dc2sql.dll` targeting the shared network path, allowing shared access to file-backed data without locking conflicts or complex database cluster configurations.
-```cmd
-dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json --new-cert
-
-```
-
-![dc2](images/dc2sql-4.png)
-
-
-
-###### *"<i>I am CVBGOD, and I have given it to you</i>!"*
-
----
-
+<div style="text-align: center; margin-bottom: 24px;">
+    <a target="_self" title="CLICK HERE to ENTER the Mercwar Digital Signature Repo FREE!" href="https://github.com/mercwar/Mercwar-AI">
+    <img 
+        src="images/dc2sql-2.png" 
+        alt="Mercwar AI - Digital Signature" 
+        style="width:100%; height:auto; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.6);"
+    />
+    </a>
+</div>
 
 ## Architecture Overview
 
@@ -143,6 +84,131 @@ File3=dc2sql\dc2sql_cli.exe
 ---
 
 ## Compilation & Resource Manifests
+
+![dc2](images/dc2sql-4.png)
+
+
+
+###### *"<i>I am CVBGOD, and I have given it to you</i>!"*
+
+---
+
+## Architecture Summary: Bridging File Drives to SQL
+
+The **`dc2sql` and `dc2jet` suite** functions as a high-performance database bridge and SQL router. It eliminates the friction of legacy file-based databases—such as Microsoft Access (`.mdb` / `.accdb`) or Microsoft Jet engine files stored on local disks, network shares, or cloud-synced folders—by translating standard SQL queries directly into native DAO (Data Access Objects) operations.
+
+Instead of rewriting legacy applications to use a heavy client-server database engine, `dc2sql` allows modern software to talk to file-based data stores using standard relational SQL syntax, reading directly from any accessible drive or path.
+
+---
+
+## How the Database Connects to a Drive
+
+The connection mechanism relies on direct path resolution and runtime file mapping handled by `dc2jet.dll` and `dc2sql.dll`:
+
+1. **Path Resolution:** The application points to a physical or network file path where your database file resides.
+2. **Engine Initialization (`dc2jet.dll`):** The Microsoft Jet database engine is loaded in-process, attaching securely to the specified file path via DAO/ODBC providers.
+3. **SQL Translation (`dc2sql.dll`):** Incoming SQL queries (SELECT, INSERT, UPDATE, DELETE) are intercepted, optimized, and converted into native Jet/DAO commands executed against the file on disk.
+4. **Result Streaming:** Records are piped back through the router to the calling application as clean standard result sets.
+
+---
+
+## Practical Examples
+
+### Example 1: Connecting to a Local Drive Path
+
+If your legacy inventory database (`inventory.accdb`) is stored on a local workspace drive, `dc2sql` mounts the file path directly for querying:
+
+```sql
+-- Connecting and querying an Access database on a local drive
+USE [C:\Mercwar-AI\data\inventory.accdb];
+
+SELECT ProductID, ProductName, UnitPrice 
+FROM Products 
+WHERE UnitsInStock < 10;
+
+```
+
+* **How it works:** The engine reads the `.accdb` file directly from the `C:\` drive path, executes the filter natively inside the Jet database engine, and returns low-stock items instantly without needing a running database service (like SQL Server or MySQL).
+
+---
+
+### Example 2: Connecting to a Network Shared Drive (`UNC Path`)
+
+For enterprise environments where legacy databases live on centralized network attached storage (NAS) or file servers, `dc2sql` resolves Universal Naming Convention (UNC) paths seamlessly:
+
+```sql
+-- Connecting to a centralized network share
+USE [\\CorpFileServer01\Finance\LegacyLedger.mdb];
+
+SELECT Department, SUM(Amount) AS TotalSpent 
+FROM Expenses 
+GROUP BY Department;
+
+```
+
+* **How it works:** Multiple client applications can route queries through `dc2sql_cli.exe` or `dc2sql.dll` targeting the shared network path, allowing shared access to file-backed data without locking conflicts or complex database cluster configurations.
+
+## Architecture Summary: Bridging File Drives to SQL
+
+The **`dc2sql` and `dc2jet` suite** functions as a high-performance database bridge and SQL router. It eliminates the friction of legacy file-based databases—such as Microsoft Access (`.mdb` / `.accdb`) or Microsoft Jet engine files stored on local disks, network shares, or cloud-synced folders—by translating standard SQL queries directly into native DAO (Data Access Objects) operations.
+
+Instead of rewriting legacy applications to use a heavy client-server database engine, `dc2sql` allows modern software to talk to file-based data stores using standard relational SQL syntax, reading directly from any accessible drive or path.
+
+---
+
+## How the Database Connects to a Drive
+
+The connection mechanism relies on direct path resolution and runtime file mapping handled by `dc2jet.dll` and `dc2sql.dll`:
+
+1. **Path Resolution:** The application points to a physical or network file path where your database file resides.
+2. **Engine Initialization (`dc2jet.dll`):** The Microsoft Jet database engine is loaded in-process, attaching securely to the specified file path via DAO/ODBC providers.
+3. **SQL Translation (`dc2sql.dll`):** Incoming SQL queries (SELECT, INSERT, UPDATE, DELETE) are intercepted, optimized, and converted into native Jet/DAO commands executed against the file on disk.
+4. **Result Streaming:** Records are piped back through the router to the calling application as clean standard result sets.
+
+---
+
+## Practical Examples
+
+### Example 1: Connecting to a Local Drive Path
+
+If your legacy inventory database (`inventory.accdb`) is stored on a local workspace drive, `dc2sql` mounts the file path directly for querying:
+
+```sql
+-- Connecting and querying an Access database on a local drive
+USE [C:\Mercwar-AI\data\inventory.accdb];
+
+SELECT ProductID, ProductName, UnitPrice 
+FROM Products 
+WHERE UnitsInStock < 10;
+
+```
+
+* **How it works:** The engine reads the `.accdb` file directly from the `C:\` drive path, executes the filter natively inside the Jet database engine, and returns low-stock items instantly without needing a running database service (like SQL Server or MySQL).
+
+---
+
+### Example 2: Connecting to a Network Shared Drive (`UNC Path`)
+
+For enterprise environments where legacy databases live on centralized network attached storage (NAS) or file servers, `dc2sql` resolves Universal Naming Convention (UNC) paths seamlessly:
+
+```sql
+-- Connecting to a centralized network share
+USE [\\CorpFileServer01\Finance\LegacyLedger.mdb];
+
+SELECT Department, SUM(Amount) AS TotalSpent 
+FROM Expenses 
+GROUP BY Department;
+
+```
+
+* **How it works:** Multiple client applications can route queries through `dc2sql_cli.exe` or `dc2sql.dll` targeting the shared network path, allowing shared access to file-backed data without locking conflicts or complex database cluster configurations.
+
+```cmd
+dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json --new-cert
+
+```
+
+
 
 ![dc2](images/dc2sql-1.png)
 
