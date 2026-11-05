@@ -162,43 +162,6 @@ The connection mechanism relies on direct path resolution and runtime file mappi
 3. **SQL Translation (`dc2sql.dll`):** Incoming SQL queries (SELECT, INSERT, UPDATE, DELETE) are intercepted, optimized, and converted into native Jet/DAO commands executed against the file on disk.
 4. **Result Streaming:** Records are piped back through the router to the calling application as clean standard result sets.
 
----
-
-## Why Developers Use `dc2sql` and the Client Architecture
-
-In enterprise and low-level Windows environments, developers frequently encounter legacy file-based databases—such as Microsoft Access `.mdb` or `.accdb` files relying on the Microsoft Jet Database Engine. Migrating these systems to client-server engines like SQL Server or PostgreSQL is often cost-prohibitive or structurally impractical.
-
-The **`dc2sql`** and **`dc2sql_cli`** architecture solves this engineering challenge by providing a zero-overhead, native C translation layer.
-
-### Core Technical Benefits for Developers
-
-* **Eliminates Heavy RDBMS Dependencies:** Applications can query file-based databases using standard relational SQL without requiring a running database server instance (like MySQL or SQL Server) on the host machine.
-* **Direct Native Performance:** Built using pure C (C89/C99) and the Win32/COM API, `dc2sql` avoids the massive memory overhead and framework abstraction layers of managed runtimes, integrating directly into low-level DLL pipelines (`dc2sql.dll` and `dc2jet.dll`).
-* **Unified CLI & Automation Support:** The `dc2sql_cli.exe` utility allows developers to script database migrations and query execution routines directly inside Windows Batch or PowerShell automation pipelines.
-
----
-
-## Microsoft Jet & DAO Architecture Integration
-
-Because the `dc2jet` component relies directly on the **Microsoft Jet Database Engine** (Joint Engine Technology) and Data Access Objects (DAO), it provides high-speed, in-process access to legacy Microsoft database formats (`.mdb` and `.accdb`) without requiring an external database service.
-
-### Technical Role of `dc2jet.dll`
-
-The Microsoft Jet engine has historically served as the foundational data management backbone for Microsoft Access, Visual Basic 6, and various Office automation tools. `dc2jet.dll` acts as a specialized low-level bridge layer that interfaces directly with Microsoft's COM-based database providers (`Microsoft.Jet.OLEDB.4.0` or `Microsoft.ACE.OLEDB.12.0`).
-
-* **In-Process Execution:** Unlike client-server databases that require a separate service daemon (e.g., `mysqld.exe` or `sqlservr.exe`), Jet executes entirely within the memory space of the calling process via `dc2sql.dll` and `dc2jet.dll`.
-* **Direct File Locking & Page Management:** Jet manages table pages, record locking, indexes, and transactional integrity directly at the file level on the host or network drive.
-* **COM/OLE DB Interoperability:** `dc2jet` utilizes COM initialization (`CoInitializeEx`) and OLE DB connection strings to negotiate query execution plans with the underlying Windows database drivers.
-
-### How Microsoft Jet Handles Drive-Based Data
-
-When an application queries a database through `dc2jet`, the engine performs the following low-level operations against the file system:
-
-1. **Workspace Allocation:** Opens a DAO/Jet workspace session, managing user security levels and system database references.
-2. **Buffer and Page Caching:** Maps database pages into local memory buffers to accelerate index traversal and row lookups.
-3. **Jet SQL Translation:** Translates standard relational requests into Jet-optimized SQL ASTs (Abstract Syntax Trees), resolving table joins, filters, and aggregations before returning the flat row sets to `dc2sql`.
-
-
 
 ---
 
