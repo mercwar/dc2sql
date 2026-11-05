@@ -326,7 +326,7 @@ The **`dc2sql`** and **`dc2sql_cli`** architecture solves this engineering chall
 
 ---
 
-## Mercwar AI Software — Legal & Cryptographic Notice (CR)
+## © 2026 Mercwar AI, Legal & Cryptographic Notice
 
 MERCWAR AI SOFTWARE :: LEGAL & CRYPTOGRAPHIC NOTICE
 
@@ -352,3 +352,24 @@ The binaries, dynamic-link libraries, and security catalogs distributed under th
 THIS SOFTWARE AND ASSOCIATED COMPILATION PIPELINES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE.
 END OF LEGAL NOTICE
 
+## Microsoft Jet & DAO Architecture Integration
+
+Because the `dc2jet` component relies directly on the **Microsoft Jet Database Engine** (Joint Engine Technology) and Data Access Objects (DAO), it provides high-speed, in-process access to legacy Microsoft database formats (`.mdb` and `.accdb`) without requiring an external database service.
+
+### Technical Role of `dc2jet.dll`
+
+The Microsoft Jet engine has historically served as the foundational data management backbone for Microsoft Access, Visual Basic 6, and various Office automation tools. `dc2jet.dll` acts as a specialized low-level bridge layer that interfaces directly with Microsoft's COM-based database providers (`Microsoft.Jet.OLEDB.4.0` or `Microsoft.ACE.OLEDB.12.0`).
+
+* **In-Process Execution:** Unlike client-server databases that require a separate service daemon (e.g., `mysqld.exe` or `sqlservr.exe`), Jet executes entirely within the memory space of the calling process via `dc2sql.dll` and `dc2jet.dll`.
+* **Direct File Locking & Page Management:** Jet manages table pages, record locking, indexes, and transactional integrity directly at the file level on the host or network drive.
+* **COM/OLE DB Interoperability:** `dc2jet` utilizes COM initialization (`CoInitializeEx`) and OLE DB connection strings to negotiate query execution plans with the underlying Windows database drivers.
+
+---
+
+### How Microsoft Jet Handles Drive-Based Data
+
+When an application queries a database through `dc2jet`, the engine performs the following low-level operations against the file system:
+
+1. **Workspace Allocation:** Opens a DAO/Jet workspace session, managing user security levels and system database references.
+2. **Buffer and Page Caching:** Maps database pages into local memory buffers to accelerate index traversal and row lookups.
+3. **Jet SQL Translation:** Translates standard relational requests into Jet-optimized SQL ASTs (Abstract Syntax Trees), resolving table joins, filters, and aggregations before returning the flat row sets to `dc2sql`.
