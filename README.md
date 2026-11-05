@@ -168,6 +168,9 @@ The connection mechanism relies on direct path resolution and runtime file mappi
 ## Why Developers Use `dc2sql` and the Client Architecture
 
 ![dc2](images/dc2sql-3.png)
+
+#
+####
 In enterprise and low-level Windows environments, developers frequently encounter legacy file-based databases—such as Microsoft Access `.mdb` or `.accdb` files relying on the Microsoft Jet Database Engine. Migrating these systems to client-server engines like SQL Server or PostgreSQL is often cost-prohibitive or structurally impractical.
 
 The **`dc2sql`** and **`dc2sql_cli`** architecture solves this engineering challenge by providing a zero-overhead, native C translation layer.
