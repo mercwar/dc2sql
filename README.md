@@ -73,7 +73,7 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
 
 ![dc2](images/dc2sql-4.png)
 
- *"I am CVBGOD, and I have given it to you!"*
+###### *"I am CVBGOD, and I have given it to you!"*
 
 ---
 
