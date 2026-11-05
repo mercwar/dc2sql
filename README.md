@@ -326,7 +326,7 @@ The **`dc2sql`** and **`dc2sql_cli`** architecture solves this engineering chall
 
 ---
 
-## © 2026 Mercwar AI, Legal & Cryptographic Notice
+### Legal & Cryptographic Notice
 
 MERCWAR AI SOFTWARE :: LEGAL & CRYPTOGRAPHIC NOTICE
 
@@ -373,3 +373,8 @@ When an application queries a database through `dc2jet`, the engine performs the
 1. **Workspace Allocation:** Opens a DAO/Jet workspace session, managing user security levels and system database references.
 2. **Buffer and Page Caching:** Maps database pages into local memory buffers to accelerate index traversal and row lookups.
 3. **Jet SQL Translation:** Translates standard relational requests into Jet-optimized SQL ASTs (Abstract Syntax Trees), resolving table joins, filters, and aggregations before returning the flat row sets to `dc2sql`.
+
+
+#### © 2026 Joseph Michael Catalano, Mercwar AI
+
+#
