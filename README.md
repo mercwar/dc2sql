@@ -23,6 +23,9 @@
 </div>
 
 
+#
+
+###  🌈 dc2sql
 
 The dc2sql_cli.exe command line utility requires the following base syntax and available switches for its configuration pipeline:
 
@@ -70,7 +73,7 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
 
 ```
 
-# Mercwar AI Software — `dc2sql` & `dc2jet` Suite
+🗝️ ## Mercwar AI Software — `dc2sql` & `dc2jet` Suite
 
 ![dc2](images/dc2sql-4.png)
 
