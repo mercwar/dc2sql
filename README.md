@@ -42,13 +42,9 @@ Use code with caution.
 
 🚀 Example Execution
 
-cmd
+###  💥 The client will automatically call dc2sql and dc2jet for you
+
 dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
-Use code with caution.
-If you need help setting up the JSON configuration, let me know:
-• Do you need an example template for the JSON configuration file?
-• Are you setting up a custom .ini binary target manifest to map file hashes?
-I can provide the exact structural format for your project files.
 
 ## Execution & Command-Line Reference
 
