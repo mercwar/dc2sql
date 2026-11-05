@@ -55,6 +55,7 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json --new-cert
 
 
 
+###### *"<i>I am CVBGOD, and I have given it to you</i>!"*
 
 ---
 
