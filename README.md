@@ -328,45 +328,27 @@ The **`dc2sql`** and **`dc2sql_cli`** architecture solves this engineering chall
 
 ## Mercwar AI Software — Legal & Cryptographic Notice (CR)
 
-```text
-============================================================================
-                   MERCWAR AI SOFTWARE :: LEGAL & CRYPTOGRAPHIC NOTICE
-============================================================================
-Document Version: 1.1.0-Release
-Effective Date: November 5, 2026
-Primary Author / Copyright Holder: Joseph Michael Catalano, Mercwar
-Publisher / Authority: Mercwar AI Code Signing Authority
-============================================================================
+MERCWAR AI SOFTWARE :: LEGAL & CRYPTOGRAPHIC NOTICE
 
-1. INTELLECTUAL PROPERTY & OWNERSHIP
-All source code, binary assemblies, cryptographic catalog definitions (.cdf), 
-security catalogs (.cat), resource manifests (.rc), and utility architectures 
-associated with the dc2sql, dc2jet, and dc2sql_cli suite are the exclusive 
-intellectual property of Joseph Michael Catalano and Mercwar AI. All rights 
-are reserved globally.
+• Document Version: 1.1.0-Release
+• Effective Date: November 5, 2026
+• Primary Author / Copyright Holder: Joseph Michael Catalano, Mercwar
+• Publisher / Authority: Mercwar AI Code Signing Authority
 
-2. LICENSING & DISTRIBUTION RESTRICTIONS
-Unauthorized reverse engineering, unauthorized decompilation, stripping of 
-PE version metadata, or unauthorized redistribution of signed assemblies 
-outside the authorized Mercwar AI operational ecosystem is strictly prohibited. 
+1. Intellectual Property & Ownership
 
-3. CRYPTOGRAPHIC INTEGRITY & CODE SIGNING
-The binaries, dynamic-link libraries, and security catalogs distributed under 
-this ecosystem are protected by cryptographic SHA-256 Authenticode signatures 
-and catalog-level file hashes. Any modification, binary patching, or tampering 
-with compiled PE assets will invalidate the security catalog (dc2sql.cat), 
-triggering Windows Defender and operating system security blocks.
+All source code, binary assemblies, cryptographic catalog definitions (.cdf), security catalogs (.cat), resource manifests (.rc), and utility architectures associated with the dc2sql, dc2jet, and dc2sql_cli suite are the exclusive intellectual property of Joseph Michael Catalano and Mercwar AI. All rights are reserved globally.
 
-4. WARRANTY DISCLAIMER
-THIS SOFTWARE AND ASSOCIATED COMPILATION PIPELINES ARE PROVIDED "AS IS" 
-WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT 
-LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE 
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
-DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE.
+2. Licensing & Distribution Restrictions
 
-============================================================================
-                         END OF LEGAL NOTICE
-============================================================================
+Unauthorized reverse engineering, unauthorized decompilation, stripping of PE version metadata, or unauthorized redistribution of signed assemblies outside the authorized Mercwar AI operational ecosystem is strictly prohibited.
 
-```
+3. Cryptographic Integrity & Code Signing
+
+The binaries, dynamic-link libraries, and security catalogs distributed under this ecosystem are protected by cryptographic SHA-256 Authenticode signatures and catalog-level file hashes. Any modification, binary patching, or tampering with compiled PE assets will invalidate the security catalog (dc2sql.cat), triggering Windows Defender and operating system security blocks.
+
+4. Warranty Disclaimer
+
+THIS SOFTWARE AND ASSOCIATED COMPILATION PIPELINES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE.
+END OF LEGAL NOTICE
+
