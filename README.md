@@ -126,19 +126,8 @@ C:\Mercwar-AI\
 
 ```
 
-### Step 3: Configure the Target Manifest (`dc2sql_targets.ini`)
 
-Ensure your target manifest references your binaries and that your database path is correctly mapped for your application queries:
-
-```ini
-[TargetFiles]
-File1=dc2sql\dc2jet.dll
-File2=dc2sql\dc2sql.dll
-File3=dc2sql\dc2sql_cli.exe
-
-```
-
-### Step 4: Execute Queries Using the Engine
+### Step 3: Execute Queries Using the Engine
 
 Once your database is in place, your applications or scripts can route queries through `dc2sql_cli.exe` or `dc2sql.dll` using standard relational SQL syntax:
 
@@ -154,8 +143,6 @@ WHERE UnitsInStock < 10;
 
 ![dc2](images/dc2sql-1.png)
 
-
----
 
 
 ---
