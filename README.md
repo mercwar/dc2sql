@@ -8,10 +8,9 @@
     </a>
 </div>
 
-# Mercwar AI Software — `dc2sql` & `dc2jet` Suite
-An enterprise-grade, administrative-elevated compilation, packaging, and digital signing pipeline designed for the **`dc2sql`** database migration and translation architecture. This suite automates resource compilation, security catalog generation (`.cdf` / `.cat`), certificate provisioning, and code-signing routines for Windows native binaries.
 
 
+### 🌎  Once you sign it yourself, it's your own WORLD!
 
 <div style="text-align: center; margin-bottom: 24px;">
     <a target="_self" title="CLICK HERE to ENTER the Mercwar Digital Signature Repo FREE!" href="https://github.com/mercwar/Mercwar-AI">
@@ -23,6 +22,30 @@ An enterprise-grade, administrative-elevated compilation, packaging, and digital
     </a>
 </div>
 
+
+
+The dc2sql_cli.exe command line utility requires the following base syntax and available switches for its configuration pipeline:
+
+⚙️ Command Syntax
+
+cmd
+dc2sql_cli.exe --config <path_to_json> [switches]
+Use code with caution.
+
+🎛️ Available Switches
+
+• --config <path>: Specifies the absolute or relative filesystem path pointing to your deployment JSON configuration manifest.
+• --help / -h: Displays the built-in command-line interface reference guide and parameter descriptions.
+
+🚀 Example Execution
+
+cmd
+dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
+Use code with caution.
+If you need help setting up the JSON configuration, let me know:
+• Do you need an example template for the JSON configuration file?
+• Are you setting up a custom .ini binary target manifest to map file hashes?
+I can provide the exact structural format for your project files.
 
 ## Execution & Command-Line Reference
 
@@ -48,6 +71,7 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
 ```
 
 # Mercwar AI Software — `dc2sql` & `dc2jet` Suite
+
 ![dc2](images/dc2sql-4.png)
 
  *"I am CVBGOD, and I have given it to you!"*
