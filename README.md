@@ -81,17 +81,10 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
 ##### An enterprise-grade, administrative-elevated database translation and compilation architecture designed for the **`dc2sql`** database migration framework. 
 ##### This suite automates high-performance database routing and native PE binary compilation for Windows native environments.
 
-# ⚠️ Troubleshooting: `[ERROR] Failed executing action query`
-
-## 🔍 Root Cause
-
-This failure occurs because **Microsoft Jet / DAO does not support batch multi-statement execution** (chaining multiple SQL statements separated by semicolons, such as `CREATE TABLE...; INSERT INTO...;`) within a single `jet_execute_action` call.
-
-> 💡 **Rule of Thumb:** Every query string passed to `jet_init` or `jet_exec_act` must be a **single, standalone SQL statement**.
 
 ---
 
-## 🛠️ The Fix
+## 🛠️ The Querys
 
 To test table creation and insert multiple rows (echoes), execute each command as a **separate, individual CLI invocation** rather than chaining them together in a single string.
 
@@ -118,6 +111,16 @@ Query the table with diagnostics enabled to confirm all records were written pro
 ```cmd
 dc2sql_cli.exe -db test_workspace.mdb -query "SELECT * FROM TestEcho" -diag
 ```
+
+#### ⚠️ Troubleshooting: `[ERROR] Failed executing action query`
+
+##### 🔍 Root Cause
+
+#####
+
+This failure occurs because **Microsoft Jet / DAO does not support batch multi-statement execution** (chaining multiple SQL statements separated by semicolons, such as `CREATE TABLE...; INSERT INTO...;`) within a single `jet_execute_action` call.
+
+> 💡 **Easy How TO:** Every query string passed to `jet_init` or `jet_exec_act` must be a **single, standalone SQL statement**.
 
 
 ## Architecture Overview
