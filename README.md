@@ -81,6 +81,44 @@ dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
 ##### An enterprise-grade, administrative-elevated database translation and compilation architecture designed for the **`dc2sql`** database migration framework. 
 ##### This suite automates high-performance database routing and native PE binary compilation for Windows native environments.
 
+# ⚠️ Troubleshooting: `[ERROR] Failed executing action query`
+
+## 🔍 Root Cause
+
+This failure occurs because **Microsoft Jet / DAO does not support batch multi-statement execution** (chaining multiple SQL statements separated by semicolons, such as `CREATE TABLE...; INSERT INTO...;`) within a single `jet_execute_action` call.
+
+> 💡 **Rule of Thumb:** Every query string passed to `jet_init` or `jet_exec_act` must be a **single, standalone SQL statement**.
+
+---
+
+## 🛠️ The Fix
+
+To test table creation and insert multiple rows (echoes), execute each command as a **separate, individual CLI invocation** rather than chaining them together in a single string.
+
+### 1️⃣ Step 1: Create the Table
+Initialize the `TestEcho` schema in your workspace database:
+```cmd
+dc2sql_cli.exe -db test_workspace.mdb -query "CREATE TABLE TestEcho (ID AUTOINCREMENT PRIMARY KEY, Message TEXT(255), LogTime DATETIME)"
+```
+
+### 2️⃣ Step 2: Insert Row Alpha
+Add the first status log entry:
+```cmd
+dc2sql_cli.exe -db test_workspace.mdb -query "INSERT INTO TestEcho (Message, LogTime) VALUES ('System Echo Alpha - Online', Now())"
+```
+
+### 3️⃣ Step 3: Insert Row Beta
+Add the second status log entry:
+```cmd
+dc2sql_cli.exe -db test_workspace.mdb -query "INSERT INTO TestEcho (Message, LogTime) VALUES ('System Echo Beta - Active', Now())"
+```
+
+### 4️⃣ Step 4: Select & Verify Echoes
+Query the table with diagnostics enabled to confirm all records were written properly:
+```cmd
+dc2sql_cli.exe -db test_workspace.mdb -query "SELECT * FROM TestEcho" -diag
+```
+
 
 ## Architecture Overview
 
