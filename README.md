@@ -27,12 +27,12 @@
 
 ###  🌈 dc2sql
 
-The dc2sql_cli.exe command line utility requires the following base syntax and available switches for its configuration pipeline:
+The dc2sql.exe command line utility requires the following base syntax and available switches for its configuration pipeline:
 
 ⚙️ Command Syntax
 
 cmd
-dc2sql_cli.exe --config <path_to_json> [switches]
+dc2sql.exe --config <path_to_json> [switches]
 Use code with caution.
 
 🎛️ Available Switches
@@ -44,7 +44,7 @@ Use code with caution.
 
 ###  💥 The client will automatically call dc2sql and dc2jet for you
 
-dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
+dc2sql.exe --config C:\Mercwar-AI\dc2sql-config.json
 
 ## Execution & Command-Line Reference
 
@@ -53,9 +53,11 @@ The utility automatically requests **Administrative Elevation** via UAC (`runas`
 ### Command Syntax
 
 ```cmd
-dc2sql_cli.exe --config <path_to_json> [switches]
+dc2sql.exe --config <path_to_json> [switches]
 
 ```
+
+![ss](images/sql-ss.png)
 
 ### Available Switches
 
@@ -65,7 +67,7 @@ dc2sql_cli.exe --config <path_to_json> [switches]
 ### Example Execution
 
 ```cmd
-dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
+dc2sql.exe --config C:\Mercwar-AI\dc2sql-config.json
 
 ```
 
@@ -91,25 +93,25 @@ To test table creation and insert multiple rows (echoes), execute each command a
 ### 1️⃣ Step 1: Create the Table
 Initialize the `TestEcho` schema in your workspace database:
 ```cmd
-dc2sql_cli.exe -db test_workspace.mdb -query "CREATE TABLE TestEcho (ID AUTOINCREMENT PRIMARY KEY, Message TEXT(255), LogTime DATETIME)"
+dc2sql.exe -db test_workspace.mdb -query "CREATE TABLE TestEcho (ID AUTOINCREMENT PRIMARY KEY, Message TEXT(255), LogTime DATETIME)"
 ```
 
 ### 2️⃣ Step 2: Insert Row Alpha
 Add the first status log entry:
 ```cmd
-dc2sql_cli.exe -db test_workspace.mdb -query "INSERT INTO TestEcho (Message, LogTime) VALUES ('System Echo Alpha - Online', Now())"
+dc2sql.exe -db test_workspace.mdb -query "INSERT INTO TestEcho (Message, LogTime) VALUES ('System Echo Alpha - Online', Now())"
 ```
 
 ### 3️⃣ Step 3: Insert Row Beta
 Add the second status log entry:
 ```cmd
-dc2sql_cli.exe -db test_workspace.mdb -query "INSERT INTO TestEcho (Message, LogTime) VALUES ('System Echo Beta - Active', Now())"
+dc2sql.exe -db test_workspace.mdb -query "INSERT INTO TestEcho (Message, LogTime) VALUES ('System Echo Beta - Active', Now())"
 ```
 
 ### 4️⃣ Step 4: Select & Verify Echoes
 Query the table with diagnostics enabled to confirm all records were written properly:
 ```cmd
-dc2sql_cli.exe -db test_workspace.mdb -query "SELECT * FROM TestEcho" -diag
+dc2sql.exe -db test_workspace.mdb -query "SELECT * FROM TestEcho" -diag
 ```
 
 #### ⚠️ Troubleshooting: `[ERROR] Failed executing action query`
@@ -125,7 +127,7 @@ This failure occurs because **Microsoft Jet / DAO does not support batch multi-s
 
 ## Architecture Overview
 
-The pipeline consists of a robust C-based runner utility (`dc2sql_cli.exe`) paired with core database provider binaries and helper dynamic-link libraries:
+The pipeline consists of a robust C-based runner utility (`dc2sql.exe`) paired with core database provider binaries and helper dynamic-link libraries:
 
 ```text
 C:\Mercwar-AI\
@@ -136,7 +138,7 @@ C:\Mercwar-AI\
 └── dc2sql\                 # Target Binaries Directory
     ├── dc2jet.dll          # Microsoft Jet / Database bridge component
     ├── dc2sql.dll          # Core translation and database routing library
-    └── dc2sql_cli.exe      # Primary command-line interface & routing engine
+    └── dc2sql.exe      # Primary command-line interface & routing engine
 
 ```
 
@@ -173,7 +175,7 @@ C:\Mercwar-AI\
 
 ### Step 3: Execute Queries Using the Engine
 
-Once your database is in place, your applications or scripts can route queries through `dc2sql_cli.exe` or `dc2sql.dll` using standard relational SQL syntax:
+Once your database is in place, your applications or scripts can route queries through `dc2sql.exe` or `dc2sql.dll` using standard relational SQL syntax:
 
 ```sql
 -- Connecting and querying your created database file
@@ -214,13 +216,13 @@ The connection mechanism relies on direct path resolution and runtime file mappi
 ####
 In enterprise and low-level Windows environments, developers frequently encounter legacy file-based databases—such as Microsoft Access `.mdb` or `.accdb` files relying on the Microsoft Jet Database Engine. Migrating these systems to client-server engines like SQL Server or PostgreSQL is often cost-prohibitive or structurally impractical.
 
-The **`dc2sql`** and **`dc2sql_cli`** architecture solves this engineering challenge by providing a zero-overhead, native C translation layer.
+The **`dc2sql`** and **`dc2sql`** architecture solves this engineering challenge by providing a zero-overhead, native C translation layer.
 
 ### Core Technical Benefits for Developers
 
 * **Eliminates Heavy RDBMS Dependencies:** Applications can query file-based databases using standard relational SQL without requiring a running database server instance (like MySQL or SQL Server) on the host machine.
 * **Direct Native Performance:** Built using pure C (C89/C99) and the Win32/COM API, `dc2sql` avoids the massive memory overhead and framework abstraction layers of managed runtimes, integrating directly into low-level DLL pipelines (`dc2sql.dll` and `dc2jet.dll`).
-* **Unified CLI & Automation Support:** The `dc2sql_cli.exe` utility allows developers to script database migrations, catalog compilations, and verification routines directly inside Windows Batch or PowerShell automation pipelines.
+* **Unified CLI & Automation Support:** The `dc2sql.exe` utility allows developers to script database migrations, catalog compilations, and verification routines directly inside Windows Batch or PowerShell automation pipelines.
 * **Cryptographic Supply Chain Security:** Every binary and catalog within the suite is secured using automated Authenticode signing, CDF security catalogs, and custom root certificate authorities (`signtool` / `makecat`), ensuring tamper-evident runtime execution under Windows 11.
 
 ---
@@ -247,17 +249,17 @@ When an application queries a database through `dc2jet`, the engine performs the
 
 ---
 
-Here is a high-impact, standalone section specifically written for your `dc2sql_cli` interface. You can paste this directly into your `README.md` right under the **Execution & Command-Line Reference** section to highlight the power of your command-line engine.
+Here is a high-impact, standalone section specifically written for your `dc2sql` interface. You can paste this directly into your `README.md` right under the **Execution & Command-Line Reference** section to highlight the power of your command-line engine.
 
 ---
 
-## ⚡ `dc2sql_cli` Execution & Automation Engine
+## ⚡ `dc2sql` Execution & Automation Engine
 
-The **`dc2sql_cli.exe`** binary is the core execution driver of the suite—a zero-dependency, ultra-lightweight Win32 command-line interface engineered in pure C. Designed for high-throughput database translation, automated drive mounting, and background processing, `dc2sql_cli` enables developers to interface with file-backed SQL databases without spawning external UI dependencies or heavy server daemons.
+The **`dc2sql.exe`** binary is the core execution driver of the suite—a zero-dependency, ultra-lightweight Win32 command-line interface engineered in pure C. Designed for high-throughput database translation, automated drive mounting, and background processing, `dc2sql` enables developers to interface with file-backed SQL databases without spawning external UI dependencies or heavy server daemons.
 
 ### Core Architecture Capabilities
 
-* **UAC Auto-Elevation Pipeline:** Built with native Win32 token checks (`IsUserAnAdmin`). If executed without administrative privileges, `dc2sql_cli` requests UAC elevation on-the-fly (`runas`) and re-spawns itself seamlessly to ensure unrestricted hardware and low-level drive access.
+* **UAC Auto-Elevation Pipeline:** Built with native Win32 token checks (`IsUserAnAdmin`). If executed without administrative privileges, `dc2sql` requests UAC elevation on-the-fly (`runas`) and re-spawns itself seamlessly to ensure unrestricted hardware and low-level drive access.
 * **Scripted & Headless Automation:** Perfectly suited for integration into Windows Batch (`.bat`), PowerShell (`.ps1`), or scheduled automated tasks (`schtasks`). Execute batch queries, execute schema migrations, or dynamically mount remote network database shares in unattended environments.
 * **Dynamic Configuration Parsing:** Uses a specialized, single-pass memory parser to read raw JSON configuration files (`dc2sql-config.json`) and INI manifests without pulling in bloated third-party dependencies.
 
@@ -268,7 +270,7 @@ The **`dc2sql_cli.exe`** binary is the core execution driver of the suite—a ze
 ![dc2](images/dc2sql-1.png)
 
 ```cmd
-dc2sql_cli.exe --config <path_to_json> [options]
+dc2sql.exe --config <path_to_json> [options]
 
 ```
 
@@ -289,7 +291,7 @@ dc2sql_cli.exe --config <path_to_json> [options]
 ```cmd
 @echo off
 echo Running automated dc2sql workspace connection...
-C:\Mercwar-AI\dc2sql\dc2sql_cli.exe --config C:\Mercwar-AI\dc2sql-config.json
+C:\Mercwar-AI\dc2sql\dc2sql.exe --config C:\Mercwar-AI\dc2sql-config.json
 if %ERRORLEVEL% EQU 0 (
     echo [SUCCESS] Database routing pipeline executed cleanly.
 ) else (
@@ -301,8 +303,8 @@ if %ERRORLEVEL% EQU 0 (
 #### 2. Executing via PowerShell Deployment Script
 
 ```powershell
-# Execute dc2sql_cli directly within a PowerShell pipeline
-$cliPath = "C:\Mercwar-AI\dc2sql\dc2sql_cli.exe"
+# Execute dc2sql directly within a PowerShell pipeline
+$cliPath = "C:\Mercwar-AI\dc2sql\dc2sql.exe"
 $configPath = "C:\Mercwar-AI\dc2sql-config.json"
 
 $process = Start-Process -FilePath $cliPath -ArgumentList "--config `"$configPath`"" -Wait -NoNewWindow -PassThru
@@ -324,7 +326,7 @@ MERCWAR AI SOFTWARE :: LEGAL & CRYPTOGRAPHIC NOTICE
 
 1. Intellectual Property & Ownership
 
-All source code, binary assemblies, cryptographic catalog definitions (.cdf), security catalogs (.cat), resource manifests (.rc), and utility architectures associated with the dc2sql, dc2jet, and dc2sql_cli suite are the exclusive intellectual property of Joseph Michael Catalano and Mercwar AI. All rights are reserved globally.
+All source code, binary assemblies, cryptographic catalog definitions (.cdf), security catalogs (.cat), resource manifests (.rc), and utility architectures associated with the dc2sql, dc2jet, and dc2sql suite are the exclusive intellectual property of Joseph Michael Catalano and Mercwar AI. All rights are reserved globally.
 
 2. Licensing & Distribution Restrictions
 
@@ -361,7 +363,7 @@ When an application queries a database through `dc2jet`, the engine performs the
 2. **Buffer and Page Caching:** Maps database pages into local memory buffers to accelerate index traversal and row lookups.
 3. **Jet SQL Translation:** Translates standard relational requests into Jet-optimized SQL ASTs (Abstract Syntax Trees), resolving table joins, filters, and aggregations before returning the flat row sets to `dc2sql`.
 
+#
 
 #### © 2026 Joseph Michael Catalano, Mercwar AI
 
-#
