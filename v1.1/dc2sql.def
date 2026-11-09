@@ -1,0 +1,15 @@
+EXPORTS
+    jet_initialize
+    jet_execute_action
+    jet_execute_select
+    jet_shutdown
+    dc2sql_open_session
+    dc2sql_validate_session
+    dc2sql_execute_router
+    dc2sql_close_session
+    diag_set_enabled
+    diag_is_enabled
+    diag_log_event
+    diag_get_buffered_count
+    diag_flush_reports
+    diag_clear_buffer
