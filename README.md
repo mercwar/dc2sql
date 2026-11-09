@@ -57,7 +57,7 @@ dc2sql.exe --config <path_to_json> [switches]
 
 ```
 
-![ss](images/sql-ss.png?v=1)
+![ss](images/sql-ss1.png)
 
 ### Available Switches
 
