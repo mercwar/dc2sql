@@ -71,13 +71,36 @@ bool __stdcall JsonRowCallback(int col_count, const char** col_names, const char
 }
 
 void PrintUsage(void) {
-    printf("==========================================================================\n");
-    printf("  DC2JET Command-Line SQL Runner (DAO 3.60 Engine)             dc2jet v1.3\n");
-    printf("==========================================================================\n");
+    printf("==============================================================================\n");
+    printf("  DC2JET / DC2SQL Enterprise Engine CLI (DAO 3.60 / Jet 4.0)       v1.3.0     \n");
+    printf("  Operator: ROBO-ROOK // Architecture: JOE-TRON-DT                           \n");
+    printf("==============================================================================\n");
+    printf("\n");
+    printf("DESCRIPTION:\n");
+    printf("  Executes SQL queries against Microsoft Access / Jet database containers with\n");
+    printf("  zero-dependency serialization and authentic engine-level telemetry.\n");
     printf("\n");
     printf("USAGE:\n");
-    printf("  dc2sql_cli.exe -db <database.mdb> -query \"<SQL>\" [-passkey <pwd>] [-diag] [-lang <style>] [-ack]\n");
-    printf("==========================================================================\n");
+    printf("  dc2sql_cli.exe -db <database.mdb> -query \"<SQL>\" [OPTIONS]\n");
+    printf("\n");
+    printf("REQUIRED PARAMETERS:\n");
+    printf("  -db <path>           Target Microsoft Access / Jet database file (.mdb)\n");
+    printf("  -query \"<SQL>\"       SQL statement (SELECT, INSERT, UPDATE, CREATE, DROP)\n");
+    printf("\n");
+    printf("OPTIONAL SWITCHES:\n");
+    printf("  -passkey <pwd>       Database security password for encrypted containers\n");
+    printf("  -lang <style>        Serialize result rows into pure target objects/formats:\n");
+    printf("                       [python|py, js|ts|javascript, json, c, c++|cpp,\n");
+    printf("                        java, php, csv, ini, xml, vbs]\n");
+    printf("  -diag                Enable live DLL diagnostic ring-buffer event logging\n");
+    printf("  -ack                 Auto-enable diagnostics and flush authentic MS-Jet\n");
+    printf("                       diagnostic telemetry buffer upon completion\n");
+    printf("  -h, --help, -?       Display this enterprise help manual\n");
+    printf("\n");
+    printf("EXAMPLES:\n");
+    printf("  dc2sql_cli.exe -db store.mdb -query \"SELECT * FROM Nodes\" -lang json -ack\n");
+    printf("  dc2sql_cli.exe -db store.mdb -query \"CREATE TABLE Logs (ID COUNTER)\" -diag\n");
+    printf("==============================================================================\n");
     fflush(stdout);
 }
 
