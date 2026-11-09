@@ -72,16 +72,14 @@ bool __stdcall JsonRowCallback(int col_count, const char** col_names, const char
 
 void PrintUsage(void) {
     printf("==============================================================================\n");
-    printf("  DC2JET / DC2SQL Enterprise Engine CLI (DAO 3.60 / Jet 4.0)       v1.3.0     \n");
-    printf("  Operator: ROBO-ROOK // Architecture: JOE-TRON-DT                           \n");
+    printf("  DC2JET / DC2SQL Enterprise Engine CLIENT (DAO 3.60 / Jet 4.0)       v1.1  \n");
     printf("==============================================================================\n");
     printf("\n");
     printf("DESCRIPTION:\n");
-    printf("  Executes SQL queries against Microsoft Access / Jet database containers with\n");
-    printf("  zero-dependency serialization and authentic engine-level telemetry.\n");
+    printf("  Executes SQL queries against Microsoft Access / Jet database containers\n");
+    printf("  Pure SQL Interface USAGE:\n");
     printf("\n");
-    printf("USAGE:\n");
-    printf("  dc2sql_cli.exe -db <database.mdb> -query \"<SQL>\" [OPTIONS]\n");
+    printf("  dc2sql.exe -db <database.mdb> -query \"<SQL>\" [OPTIONS]\n");
     printf("\n");
     printf("REQUIRED PARAMETERS:\n");
     printf("  -db <path>           Target Microsoft Access / Jet database file (.mdb)\n");
@@ -98,8 +96,8 @@ void PrintUsage(void) {
     printf("  -h, --help, -?       Display this enterprise help manual\n");
     printf("\n");
     printf("EXAMPLES:\n");
-    printf("  dc2sql_cli.exe -db store.mdb -query \"SELECT * FROM Nodes\" -lang json -ack\n");
-    printf("  dc2sql_cli.exe -db store.mdb -query \"CREATE TABLE Logs (ID COUNTER)\" -diag\n");
+    printf("  dc2sql.exe -db store.mdb -query \"SELECT * FROM Nodes\" -lang json -ack\n");
+    printf("  dc2sql.exe -db store.mdb -query \"CREATE TABLE Logs (ID COUNTER)\" -diag\n");
     printf("==============================================================================\n");
     fflush(stdout);
 }
