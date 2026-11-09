@@ -10,10 +10,6 @@
 
 
 
-### 🌎  Once you sign it yourself, it's your own WORLD!
-
-
-
 
 #
 
@@ -305,6 +301,18 @@ Write-Host "dc2sql Execution Complete. Exit Code: $($process.ExitCode)"
 ```
 
 
+#### 🌎  Don't forget to check out the new FREE Digital Signer...  Once you sign it yourself, it's your own WORLD!
+
+
+<div style="text-align: center; margin-bottom: 24px;">
+    <a target="_self" title="CLICK HERE to ENTER the Mercwar Digital Signature Repo FREE!" href="https://github.com/mercwar/Mercwar-AI">
+    <img 
+        src="images/dc2sql-2.png" 
+        alt="Mercwar AI - Digital Signature" 
+        style="width:100%; height:auto; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.6);"
+    />
+    </a>
+</div>
 ---
 
 ### Legal & Cryptographic Notice
