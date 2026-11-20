@@ -223,6 +223,9 @@
     <loc>https://github.com/mercwar/dc2sql/blob/main/v1.1/dc2sql.exe</loc>
   </url>
   <url>
+    <loc>https://github.com/mercwar/dc2sql/blob/main/.gitmodules</loc>
+  </url>
+  <url>
     <loc>https://github.com/mercwar/dc2sql/blob/main/google77a4b19e8f99751c.html</loc>
   </url>
   <url>
@@ -230,9 +233,6 @@
   </url>
   <url>
     <loc>https://github.com/mercwar/dc2sql/blob/main/fire-site.sh</loc>
-  </url>
-  <url>
-    <loc>https://github.com/mercwar/dc2sql/blob/main/AVIS-DATALAKE.md</loc>
   </url>
   <url>
     <loc>https://github.com/mercwar/dc2sql/blob/main/.github/workflows/fire-site.yml</loc>
