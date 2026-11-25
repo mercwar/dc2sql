@@ -13,26 +13,21 @@
 
 #
 
-###  🌈 dc2sql
+###  🌈 dc2sql v1.4
+Note: The Command line switches are different in the new v1.4, referrer to the images below.
 
 The dc2sql.exe command line utility requires the following base syntax and available switches for its configuration pipeline:
 
 ⚙️ Command Syntax
 
-cmd
-dc2sql.exe  [switches]
-Use code with caution.
-
-🎛️ Available Switches
-
-• --config <path>: Specifies the absolute or relative filesystem path pointing to your deployment JSON configuration manifest.
-• --help / -h: Displays the built-in command-line interface reference guide and parameter descriptions.
+```
+cmd:\ dc2sql.exe  [switches]
+```
 
 🚀 Example Execution
 
 ###  💥 The client will automatically call dc2sql and dc2jet for you
 
-dc2sql.exe --config C:\Mercwar-AI\dc2sql-config.json
 
 ## Execution & Command-Line Reference
 
@@ -40,23 +35,25 @@ The utility automatically requests **Administrative Elevation** via UAC (`runas`
 
 ### Command Syntax
 
-```cmd
-dc2sql.exe --config <path_to_json> [switches]
 
-```
+🎛️ Available Switches
+
+
+• --help / -h: Displays the built-in command-line interface reference guide and parameter descriptions.
 
 ![ss](images/dc2ss-8.png)
 
-### Available Switches
-
-* `--config <path>` — Specify the absolute or relative path to the deployment JSON configuration.
-* `--help`, `-h` — Display the CLI reference guide and parameter descriptions.
 
 ### Example Execution
 
 ```cmd
-dc2sql.exe --config C:\Mercwar-AI\dc2sql-config.json
+echo_jet.bat
+```
 
+and
+
+```cmd
+echo_track.bat
 ```
 
 ## 🗝️  Mercwar AI Software — `dc2sql` & `dc2jet` Suite
