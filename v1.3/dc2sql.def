@@ -1,0 +1,23 @@
+LIBRARY dc2sql
+EXPORTS
+    ; DC2SQL High-Level Engine API
+    DC2SQL_InitializeEngine        @1
+    DC2SQL_OpenSession             @2
+    DC2SQL_OpenSessionEx           @3
+    DC2SQL_ExecuteQuery            @4
+    DC2SQL_CloseSession            @5
+    DC2SQL_GetActiveSessionCount   @6
+    DC2SQL_WaitForSessions         @7
+    DC2SQL_ShutdownEngine          @8
+
+    ; DC2JET Low-Level Engine & Session API
+    jet_initialize                 @9
+    jet_route_path                 @10
+    jet_execute_action             @11
+    jet_execute_select             @12
+    jet_shutdown                   @13
+    jet_open_session               @14
+    jet_get_session                @15
+    jet_close_session              @16
+    jet_get_active_session_count   @17
+    RunJetTest                     @18

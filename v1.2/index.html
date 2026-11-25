@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>dc2sql | dc2sql is a high-performance, headless 32-bit C-based database engine utilizing DAO 3.60 COM automation for exclusive Microsoft Jet 4.0 (.mdb) container provisioning. It features ring-buffer diagnostic telemetry, robust session routing, and automated table lifecycle management for low-level Win32 data operations.</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="dc2sql" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="dc2sql is a high-performance, headless 32-bit C-based database engine utilizing DAO 3.60 COM automation for exclusive Microsoft Jet 4.0 (.mdb) container provisioning. It features ring-buffer diagnostic telemetry, robust session routing, and automated table lifecycle management for low-level Win32 data operations." />
+<meta property="og:description" content="dc2sql is a high-performance, headless 32-bit C-based database engine utilizing DAO 3.60 COM automation for exclusive Microsoft Jet 4.0 (.mdb) container provisioning. It features ring-buffer diagnostic telemetry, robust session routing, and automated table lifecycle management for low-level Win32 data operations." />
+<link rel="canonical" href="https://mercwar.github.io/dc2sql/v1.2/" />
+<meta property="og:url" content="https://mercwar.github.io/dc2sql/v1.2/" />
+<meta property="og:site_name" content="dc2sql" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="dc2sql" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"dc2sql is a high-performance, headless 32-bit C-based database engine utilizing DAO 3.60 COM automation for exclusive Microsoft Jet 4.0 (.mdb) container provisioning. It features ring-buffer diagnostic telemetry, robust session routing, and automated table lifecycle management for low-level Win32 data operations.","headline":"dc2sql","url":"https://mercwar.github.io/dc2sql/v1.2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/dc2sql/assets/css/style.css?v=22407066751ce2f81383f2c544d2da265dda68bd">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/dc2sql/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://mercwar.github.io/dc2sql/">dc2sql</a></h1>
+      
+
+      <p>Here is the complete README.md for DC2SQL v1.2 followed by the standalone push batch script (push_dc2sql_v1.2.bat) that stages C:\Mercwar-AI\dc2win\dc2win_bk\dc2sql into a v1.2 subfolder and pushes it to https://github.com without modifying your local directory or requiring manual cd.</p>
+
+<ol>
+  <li>README.md (Save to C:\Mercwar-AI\dc2win\dc2win_bk\dc2sql\README.md)</li>
+</ol>
+
+<p>markdown</p>
+<div align="center">
+
+# ⚡ DC2SQL v1.2 — Native x64 ACE/Jet SQL Engine &amp; CLI
+
+[![Platform](https://shields.io)](https://github.com)
+[![Language](https://shields.io)](https://github.com)
+[![Engine](https://shields.io)](https://github.com)
+
+**Zero-bloat native C x64 SQL engine (`dc2sql.dll`) and command-line client (`dc2sql.exe`) for Microsoft Access (`.accdb` / `.mdb`) databases on Windows 11.**
+
+</div>
+
+<hr />
+
+<h2 id="-overview">🚀 Overview</h2>
+
+<p><strong>DC2SQL</strong> bridges pure C applications and command-line workflows directly to Windows 11’s 64-bit <strong>ACE 12.0 / Jet ODBC</strong> and <strong>DAO COM</strong> subsystems—with zero heavy runtimes, automatic <code class="language-plaintext highlighter-rouge">.accdb</code>/<code class="language-plaintext highlighter-rouge">.mdb</code> container provisioning, runtime <code class="language-plaintext highlighter-rouge">Tracker.dll</code> handle registration, and multi-language query serialization.</p>
+
+<hr />
+
+<h2 id="️-architecture">🏗️ Architecture</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Component</th>
+      <th style="text-align: left">Binary / Source</th>
+      <th style="text-align: left">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Core SQL &amp; Jet Engine</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">dc2sql.dll</code> (<code class="language-plaintext highlighter-rouge">dc2jet.c</code>, <code class="language-plaintext highlighter-rouge">dc2sql.c</code>, <code class="language-plaintext highlighter-rouge">dc2sql_diag.c</code>)</td>
+      <td style="text-align: left">Provisions <code class="language-plaintext highlighter-rouge">.accdb</code> (<code class="language-plaintext highlighter-rouge">dbVersion120</code>) and <code class="language-plaintext highlighter-rouge">.mdb</code> (<code class="language-plaintext highlighter-rouge">dbVersion40</code>) files automatically via COM (<code class="language-plaintext highlighter-rouge">DAO.DBEngine.120</code> / <code class="language-plaintext highlighter-rouge">DAO.DBEngine.36</code>), connects via ODBC (<code class="language-plaintext highlighter-rouge">SQLDriverConnectA</code>), and dynamically binds <code class="language-plaintext highlighter-rouge">Tracker.dll</code> (<code class="language-plaintext highlighter-rouge">LoadLibraryA</code> / <code class="language-plaintext highlighter-rouge">GetProcAddress</code>) to track contexts and ODBC handles across <code class="language-plaintext highlighter-rouge">FG_NS_MODULE</code>, <code class="language-plaintext highlighter-rouge">FG_NS_KERNEL</code>, and <code class="language-plaintext highlighter-rouge">FG_NS_ID64</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>CLI Host &amp; Formatter</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">dc2sql.exe</code> (<code class="language-plaintext highlighter-rouge">dc2sql_cli.c</code>, <code class="language-plaintext highlighter-rouge">dc2jet_fmt.c</code>)</td>
+      <td style="text-align: left">Dynamically loads <code class="language-plaintext highlighter-rouge">dc2sql.dll</code>, executes DDL/DML/SELECT queries, formats output across multiple programming languages, flushes diagnostic telemetry, and supports persistent tracked sessions (<code class="language-plaintext highlighter-rouge">-track</code>).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Runtime Redist Setup</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">install_ace_redist.bat</code></td>
+      <td style="text-align: left">Checks Windows 11 x64 ODBC &amp; COM registry keys and installs the 64-bit Microsoft Access Database Engine (<code class="language-plaintext highlighter-rouge">winget</code>) if missing.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-project-layout">📁 Project Layout</h2>
+
+<p>```text
+dc2sql/
+├── bin/
+│   ├── dc2sql.exe              # Command-line SQL client
+│   ├── dc2sql.dll              # Native x64 ACE/Jet + Tracker engine DLL
+│   └── Tracker.dll             # 64-bit handle &amp; session tracker runtime
+├── source/
+│   ├── dc2jet.c                # DAO container provisioning &amp; ODBC execution layer
+│   ├── dc2sql.c                # High-level tracked session wrapper API
+│   ├── dc2sql_cli.c            # CLI argument parser &amp; -track host loop
+│   ├── dc2sql_diag.c           # Buffered diagnostic telemetry logger
+│   └── dc2jet_fmt.c            # Multi-language row serializer
+├── include/
+│   ├── dc2jet.h                # Low-level Jet C API declarations
+│   ├── dc2sql.h                # High-level DC2SQL session API declarations
+│   ├── dc2sql_diag.h           # Diagnostic telemetry API
+│   └── dc2jet_fmt.h            # Formatter &amp; acknowledgment declarations
+├── dc2sql.def                  # DLL export table (@1–@18)
+├── dc2sql.rc                   # Version &amp; icon resources
+├── build.bat                   # MSVC x64 suite builder
+├── test_track.bat              # Automated -track session lifecycle test
+└── install_ace_redist.bat      # Windows 11 x64 ACE/Jet redistributable installer
+Use code with caution.</p>
+
+<p>🛠️ Prerequisites &amp; Building (MSVC x64)</p>
+
+<ol>
+  <li>Install Windows 11 x64 ACE / Jet Runtime</li>
+</ol>
+
+<p>Run install_ace_redist.bat (or install via winget):
+bat
+winget install –id Microsoft.AccessDatabaseEngine.2016 –architecture x64 –override “/quiet”
+Use code with caution.</p>
+
+<ol>
+  <li>Compile dc2sql.dll and dc2sql.exe</li>
+</ol>
+
+<p>Run build.bat from a Visual Studio x64 Native Tools Command Prompt (or let build.bat auto-initialize vcvars64.bat):
+bat
+build.bat
+Use code with caution.</p>
+
+<p>💻 CLI Usage</p>
+
+<p>bat
+dc2sql.exe –dir <folder> --db <file.accdb> --sql "<SQL_QUERY>" [options]
+Use code with caution.</SQL_QUERY></file.accdb></folder></p>
+
+<p>Command-Line Options</p>
+
+<p>Flag	Alias	Description
+–db <file>
+	-d	Target database filename or path (.accdb or .mdb). Auto-created if missing.
+--dir <folder>
+	-b	Base directory for resolving the database path.
+--pass <passkey>
+	-p	Optional database password.
+--sql <query>
+	-q	SQL statement to execute (CREATE TABLE, INSERT, UPDATE, DELETE, SELECT).
+--session <name>
+	-s	Named session identifier registered in Tracker.dll.
+--dll <path>
+	—	Explicit path to dc2sql.dll or dc2jet.dll.
+--lang <format>
+	-l	Serialize SELECT rows as json, python, js, c, c++, java, or php.
+--ack
+	—	Wrap output with structured msjet status and execution timing telemetry.
+--diag
+	-v	Flush internal [JET], [DAO], [ODBC], and [SELECT] diagnostic logs.
+-track
+	--hold	Keep the Tracker.dll session handle and ACE database lock open until Ctrl+C.
+--help
+	-h	Display CLI usage information.</format></path></name></query></passkey></folder></file></p>
+
+<p>🧪 Examples</p>
+
+<p>Create a Table &amp; Seed Records</p>
+
+<p>bat
+dc2sql.exe –dir “temp_vault” –db “eclipse_store.accdb” –sql “CREATE TABLE CyborgNodes (NodeID COUNTER PRIMARY KEY, OperatorCode TEXT(64), Subsystem TEXT(64))” –diag
+dc2sql.exe –dir “temp_vault” –db “eclipse_store.accdb” –sql “INSERT INTO CyborgNodes (OperatorCode, Subsystem) VALUES (‘ROBO-ROOK-01’, ‘DIRECTX-12-PIPELINE’)”
+Use code with caution.</p>
+
+<p>Query with JSON Serialization &amp; Telemetry Acknowledgment</p>
+
+<p>bat
+dc2sql.exe –dir “temp_vault” –db “eclipse_store.accdb” –sql “SELECT * FROM CyborgNodes” –lang json –ack
+Use code with caution.</p>
+
+<p>Hold a Persistent Tracked Session (-track)</p>
+
+<p>bat
+dc2sql.exe –dir “temp_vault” –db “eclipse_store.accdb” –session “cyborg_track_01” –sql “SELECT * FROM CyborgNodes” –lang json –diag -track
+Use code with caution.</p>
+
+<p>📜 License</p>
+
+<p>Built by Mercwar (github.com/mercwar).</p>
+
+<hr />
+
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
