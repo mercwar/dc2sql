@@ -20,7 +20,7 @@ The dc2sql.exe command line utility requires the following base syntax and avail
 ⚙️ Command Syntax
 
 cmd
-dc2sql.exe --config <path_to_json> [switches]
+dc2sql.exe  [switches]
 Use code with caution.
 
 🎛️ Available Switches
